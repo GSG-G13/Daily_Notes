@@ -1,10 +1,12 @@
-const addNotesQuery =  require('../database/query/addNotesQuery'); 
+const addNotesQuery = require('../database/query/addNotesQuery');
 
-const addNote = (req, res) =>{
-    console.log(req.body);
+const addNote = (req, res) => {
     const userData = req.body;
-
-    addNotesQuery(userData);
+    addNotesQuery(userData).then(result => {
+        res.status(201).json({
+            data: result
+        })
+    }).catch(err => console.log(err))
 
 }
 

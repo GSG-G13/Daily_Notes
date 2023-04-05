@@ -1,8 +1,8 @@
 require("dotenv").config();
-const express =  require('express');
-const app =  express();
-const {join} = require('path');
-const compression = require('compression'); 
+const express = require('express');
+const app = express();
+const { join } = require('path');
+const compression = require('compression');
 const router = require('./router/router');
 
 app.set('port', process.env.PORT || 5000);
