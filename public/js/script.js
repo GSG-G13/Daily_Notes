@@ -3,21 +3,25 @@ const title = document.querySelector('.title');
 const content = document.querySelector('.content');
 const lists = document.querySelector('.lists');
 
-btn.addEventListener('click', () => {
-  const li = document.createElement('li');
-  const p = document.createElement('p');
-  const h2 = document.createElement('h2');
-  const h4 = document.createElement('h4');
-  const items = [{ title: title.value, description: content.value }];
+const renderData = () => {
+  fetch('/notes').then(result => result.json()).then(data => {
+    console.log(data.data);
+    data.data.forEach(ele => {
+      const li = document.createElement('li');
+      const p = document.createElement('p');
+      const h2 = document.createElement('h2');
+      const h4 = document.createElement('h4');
 
-  for (let i = 0; i < items.length; i++) {
+        h2.textContent = ele.title;
+        h4.textContent = ele.content;
+        p.appendChild(h2);
+        p.appendChild(h4);
+        li.appendChild(p);
+      
+      lists.appendChild(li);
 
-    h2.textContent = items[i].title;
-    h4.textContent = items[i].description;
-    p.appendChild(h2);
-    p.appendChild(h4);
-    li.appendChild(p);
-  }
-  lists.appendChild(li);
+    });
+  }).catch(console.log);
 
-});
+}
+renderData()
