@@ -7,6 +7,7 @@ const lists = document.querySelector('.lists');
 const renderData = () => {
 
   fetch('/notes').then(result => result.json()).then(data => {
+    lists.innerHTML = ''
     data.data.forEach(ele => {
       const li = document.createElement('li');
       const p = document.createElement('p');
