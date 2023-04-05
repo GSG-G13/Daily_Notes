@@ -1,10 +1,10 @@
-// DB_URL = postgres://notes:123456@localhost:5432/notes
-
 const getNote = require('../controllers/getnote');
+const addNote = require('../controllers/addnote');
 
 const router = require('express').Router();
 
-router.get('/notes', getNote)
+router.get('/notes', getNote);
+router.post('/create', addNote);
 
 
 module.exports = router;
