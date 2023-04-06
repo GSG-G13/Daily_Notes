@@ -1,10 +1,12 @@
 const getNote = require('../controllers/getnote');
 const addNote = require('../controllers/addnote');
 const {join} = require('path');
+const deleteeNote = require('../controllers/deleteNote');
 const router = require('express').Router();
 
 router.get('/notes', getNote);
 router.post('/create', addNote);
+router.get('/delete/:id', deleteeNote);
 
 router.use((req, res) => {
     res

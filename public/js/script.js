@@ -13,15 +13,33 @@ const renderData = () => {
       const p = document.createElement('p');
       const h2 = document.createElement('h2');
       const h4 = document.createElement('h4');
+      const h42 = document.createElement('h4');
+      const deletebtn = document.createElement('h3');
 
       h2.textContent = ele.title;
       h4.textContent = ele.content;
+      h42.textContent = ele.creattime;
+      deletebtn.textContent = 'x'
       p.appendChild(h2);
       p.appendChild(h4);
+      li.appendChild(deletebtn)
       li.appendChild(p);
+      li.appendChild(h42);
+
+      deletebtn.addEventListener('click', () => {
+        fetch(`/delete/${ele.id}`)
+          .then(data => {
+            if (data.status === 200) {
+              renderData();
+            }
+          })
+      })
+      // renderData()
 
       lists.appendChild(li);
-
+      setTimeout(() => {
+        li.style.transform = 'scale(1)'
+      }, 100)
     });
   }).catch(console.log);
 
@@ -29,7 +47,7 @@ const renderData = () => {
 renderData()
 
 btn.addEventListener('click', () => {
-  if(title.value ==='', content.value === ''){
+  if (title.value === '', content.value === '') {
     return
   }
   let data = {
@@ -41,15 +59,18 @@ btn.addEventListener('click', () => {
   console.log(JSON.stringify(data));
   fetch('/create', {
     method: 'POST',
- headers: {
-    'Accept': 'application/json, text/plain, */*',
-    'Content-Type': 'application/json'
-  },
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(data)
 
   })
-  .catch(console.log)
-  .then(result => result.json())
-  .then(data => renderData(data))
-  .catch(console.log)
+    .catch(console.log)
+    .then(result => result.json())
+    .then(data => renderData(data))
+    .catch(console.log)
+
+  title.value = '';
+  content.value = '';
 })

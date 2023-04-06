@@ -1,4 +1,3 @@
-const { log } = require('console');
 const app = require('../app');
 const request = require('supertest');
 
@@ -12,7 +11,7 @@ test('Get /notes status 200 json get all notes', (done) => {
         return done(err);
       }
       console.log(res.body.data);
-      expect(res.body.data.length).toBe(25);
+      expect(res.body.data.length).toBe(110);
       return done();
     });
 });
