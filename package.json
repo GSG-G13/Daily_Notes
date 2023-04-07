@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
+    "build:db": "node server/database/config/build.js",
     "test": "jest"
   },
   "keywords": [],

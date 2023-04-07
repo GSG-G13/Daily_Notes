@@ -11,8 +11,8 @@ CREATE TABLE notes(
 );
 
 INSERT INTO notes(title , content) values 
-('reading', 'I love reading a story'),
-('reading', 'I love reading a story'),
-('reading', 'I love reading a story');
+('cooking', 'dont forget to cook today!'),
+('reading', 'read a story before sleeping!'),
+('writting', 'write your assignment!');
 
 COMMIT;
